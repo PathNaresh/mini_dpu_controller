@@ -1,0 +1,83 @@
+APB Driver Tasks
+APB write task
+APB read task
+SRAM Initialization
+
+Source region preloaded with known patterns.
+
+Example:
+
+mem[0] = A5A50000
+mem[1] = A5A50001
+End-to-End Data Checking
+
+Verifies:
+
+destination_data == source_data
+
+for all transferred words.
+
+Verification Areas Covered
+Feature	Verification
+Reset	YES
+APB writes	YES
+Register decode	YES
+FSM transitions	YES
+SRAM reads	YES
+SRAM writes	YES
+Address incrementing	YES
+Transfer counting	YES
+Interrupt generation	YES
+Data integrity	YES
+Waveform Debug Signals
+
+Important debug signals:
+
+Signal	Purpose
+current_state	FSM tracking
+src_ptr	Source pointer
+dst_ptr	Destination pointer
+transfer_count	Transfer progress
+sram_we	SRAM write enable
+sram_raddr	Read address
+sram_waddr	Write address
+sram_wdata	Transfer data
+irq	Completion interrupt
+Example Transfer
+Initial Memory
+mem[0] = A5A50000
+mem[1] = A5A50001
+...
+mem[7] = A5A50007
+After Transfer
+mem[16] = A5A50000
+mem[17] = A5A50001
+...
+mem[23] = A5A50007
+Learning Outcomes
+
+This project teaches:
+
+ASIC controller architecture
+APB protocol basics
+FSM design
+DMA-style data movement
+Register-based programming model
+Directed verification
+Datapath verification
+Interrupt handling
+End-to-end checking
+Future Enhancements
+
+Planned upgrades:
+
+AXI4 support
+Burst transfers
+Multiple SRAMs
+True DMA engine architecture
+UVM environment
+Functional coverage
+Assertions (SVA)
+Randomized testing
+Performance counters
+Multi-channel DPU
