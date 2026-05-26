@@ -94,3 +94,15 @@ mini_dpu_controller/
 ├── waves/
 └── README.md
 
+This project represents:
+
+ASIC RTL + Directed Verification Learning Project
+
+and forms a strong foundation for:
+
+DMA controllers
+accelerator subsystems
+AI/NPU datapaths
+SoC verification environments
+UVM migration projects
+
