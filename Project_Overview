@@ -1,0 +1,96 @@
+Mini DPU Controller
+
+A simplified ASIC-style Mini DPU (Data Processing Unit) Controller project designed for learning:
+
+RTL Design :
+APB protocol
+FSM-based controller design
+DMA-style data movement
+ASIC verification methodology
+SoC subsystem integration
+
+This project models a small hardware accelerator that autonomously copies data between memory regions inside SRAM under CPU/APB control.
+
+Project Goals :
+
+The main objective of this project is to learn and demonstrate:
+
+APB slave interface design
+Memory-mapped register architecture
+FSM-controlled datapath operation
+DMA-style memory transfers
+Interrupt generation and handling
+Directed verification methodology
+End-to-end data integrity checking
+
+High-Level Architecture
+                +----------------------+
+APB Master ---->|   APB Slave IF       |
+                +----------------------+
+                           |
+                           v
+                +----------------------+
+                |   DPU Controller     |
+                | FSM + Transfer Logic |
+                +----------------------+
+                           |
+                           v
+                +----------------------+
+                |      SRAM Model      |
+                +----------------------+
+
+Functional Overview :
+
+The Mini DPU Controller performs Memory-to-memory data copy operation inside a single SRAM.
+
+The CPU/software:
+
+Programs source address
+Programs destination address
+Programs transfer length
+Starts DPU operation
+
+The DPU then:
+
+reads source data
+writes destination data
+repeats until transfer completes
+generates interrupt
+
+Key Features :
+
+Control Path -
+APB3 simplified slave interface
+Memory-mapped registers
+START control
+STATUS monitoring
+Interrupt support
+
+Datapath -
+Internal SRAM model
+Source/Destination address pointers
+Transfer counter
+Buffered data movement
+
+Controller -
+FSM-based architecture
+Autonomous transfer engine
+Error detection
+DONE/ERROR interrupt generation
+
+Project Directory Structure :
+mini_dpu_controller/
+├── rtl/
+│   ├── sram_model.sv
+│   ├── apb_slave_if.sv
+│   ├── dpu_controller.sv
+│   └── dpu_top.sv
+│
+├── tb/
+│   └── tb_top.sv
+│
+├── sim/
+├── docs/
+├── waves/
+└── README.md
+
