@@ -1,0 +1,69 @@
+1. SRAM Model
+
+File: rtl/sram_model.sv
+
+Features:
+
+256 x 32-bit memory
+synchronous write
+combinational read
+word-addressable memory
+
+Purpose: stores source and destination data
+
+2. APB Slave Interface
+
+File: rtl/apb_slave_if.sv
+
+Responsibilities:
+
+APB protocol handling
+register decode
+register storage
+configuration outputs
+
+Registers:
+
+CTRL
+STATUS
+SRC_ADDR
+DST_ADDR
+LENGTH
+IRQ_STATUS
+IRQ_CLEAR
+
+3. DPU Controller
+
+File: rtl/dpu_controller.sv
+
+Responsibilities:
+
+FSM sequencing
+address generation
+transfer management
+interrupt generation
+error handling
+
+FSM: IDLE -> READ -> WRITE -> DONE
+
+4. Top-Level Integration
+
+File: rtl/dpu_top.sv
+
+Integrates:
+
+APB IF
+DPU controller
+SRAM model
+
+5. Testbench
+
+File: tb/tb_top.sv
+
+Features:
+
+clock/reset generation
+APB write/read tasks
+SRAM initialization
+directed transfer test
+data integrity checks
