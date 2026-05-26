@@ -1,0 +1,87 @@
+Step 1 — Program Registers
+
+Software writes:
+
+SRC_ADDR
+DST_ADDR
+LENGTH
+
+Example:
+
+SRC_ADDR = 0
+DST_ADDR = 16
+LENGTH   = 8
+
+Meaning:
+
+Copy 8 words
+from mem[0:7]
+to mem[16:23]
+Step 2 — Start Transfer
+
+Software writes:
+
+CTRL.START = 1
+
+FSM transitions:
+
+IDLE -> READ
+Step 3 — READ State
+
+Controller:
+
+reads source SRAM data
+stores into internal buffer
+
+Example:
+
+data_buffer <= mem[src_ptr]
+Step 4 — WRITE State
+
+Controller:
+
+writes buffered data to destination
+
+Example:
+
+mem[dst_ptr] <= data_buffer
+
+Then increments:
+
+source pointer
+destination pointer
+transfer counter
+Step 5 — DONE State
+
+When transfer completes:
+
+done = 1
+irq  = 1
+
+Software notified through interrupt.
+
+Step 6 — IRQ Clear
+
+Software writes:
+
+IRQ_CLEAR = 1
+
+Controller:
+
+clears interrupt
+returns FSM to IDLE
+FSM States
+State	Description
+IDLE	Wait for START
+READ	Read source data
+WRITE	Write destination data
+DONE	Transfer completed
+ERROR	Illegal configuration
+Error Conditions
+
+Controller enters ERROR state when:
+
+LENGTH = 0
+source address out of range
+destination address out of range
+transfer exceeds SRAM boundary
