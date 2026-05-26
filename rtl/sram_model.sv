@@ -46,6 +46,7 @@ module sram_model #(
     always @(posedge clk) begin
         if (we) begin
             mem[waddr] <= wdata;
+            $display("[SRAM][WRITE] TIME=%0t ADDR=0x%0h DATA=0x%08h", $time, waddr, wdata);
         end
     end
 
