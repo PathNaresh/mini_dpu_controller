@@ -105,6 +105,8 @@ module apb_slave_if (
             // APB WRITE
             if (psel && penable && pwrite) begin
 
+                $display("[APB][WRITE] TIME=%0t ADDR=0x%04h DATA=0x%08h", $time, paddr, pwdata);
+
                 case (paddr)
 
                     CTRL_ADDR: begin
