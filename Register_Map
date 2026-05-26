@@ -1,0 +1,40 @@
+Address	Register	Access	Description
+0x0000	CTRL	RW	Start transfer
+0x0004	STATUS	RO	BUSY/DONE/ERROR
+0x0008	SRC_ADDR	RW	Source address
+0x000C	DST_ADDR	RW	Destination address
+0x0010	LENGTH	RW	Transfer length
+0x0014	IRQ_STATUS	RO	Interrupt status
+0x0018	IRQ_CLEAR	WO	Clear interrupt
+
+Register Definitions :
+
+CTRL Register (0x0000)
+Bit	Name	Description
+[0]	START	Start DPU transfer
+
+STATUS Register (0x0004)
+Bit	Name	Description
+[0]	BUSY	Transfer active
+[1]	DONE	Transfer complete
+[2]	ERROR	Error detected
+
+SRC_ADDR Register (0x0008)
+Bits	Description
+[7:0]	Source SRAM address
+
+DST_ADDR Register (0x000C)
+Bits	Description
+[7:0]	Destination SRAM address
+
+LENGTH Register (0x0010)
+Bits	Description
+[15:0]	Number of words to transfer
+
+IRQ_STATUS Register (0x0014)
+Bit	Description
+[0]	Interrupt pending
+
+IRQ_CLEAR Register (0x0018)
+Bit	Description
+[0]	Clear interrupt
