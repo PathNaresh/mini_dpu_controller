@@ -1,37 +1,20 @@
-Step 1 — Program Registers
+Step 1 — Program Registers :
 
-Software writes:
+Software writes: SRC_ADDR, DST_ADDR & LENGTH
 
-SRC_ADDR
-DST_ADDR
-LENGTH
+Example: SRC_ADDR = 0, DST_ADDR = 16 & LENGTH   = 8
 
-Example:
+Meaning: Copy 8 words from mem[0:7] to mem[16:23]
 
-SRC_ADDR = 0
-DST_ADDR = 16
-LENGTH   = 8
+Step 2 — Start Transfer :
 
-Meaning:
+Software writes: CTRL.START = 1
 
-Copy 8 words
-from mem[0:7]
-to mem[16:23]
-Step 2 — Start Transfer
+FSM transitions: IDLE -> READ
 
-Software writes:
-
-CTRL.START = 1
-
-FSM transitions:
-
-IDLE -> READ
 Step 3 — READ State
 
-Controller:
-
-reads source SRAM data
-stores into internal buffer
+Controller reads source SRAM data & stores into internal buffer
 
 Example:
 
@@ -51,6 +34,7 @@ Then increments:
 source pointer
 destination pointer
 transfer counter
+
 Step 5 — DONE State
 
 When transfer completes:
@@ -70,6 +54,7 @@ Controller:
 
 clears interrupt
 returns FSM to IDLE
+
 FSM States
 State	Description
 IDLE	Wait for START
